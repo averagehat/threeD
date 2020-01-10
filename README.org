@@ -1,0 +1,11 @@
+* Basics
+
+/Applications/OpenSCAD.app/Contents/MacOS/OpenSCAD
+
+Threes also has an STL loader in threejs https://threejs.org/examples/webgl_loader_stl.html
+
+** Code for hot reload
+
+ghcid "--command=cabal repl Main.hs" --test=threejs
+sudo npm install -g live-server
+live-server 

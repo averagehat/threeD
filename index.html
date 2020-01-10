@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r83/three.min.js"></script>
+
+  <script id="vertexShader" type="x-shader/x-vertex">
+        uniform float time;
+    varying vec3 vUv; 
+
+    void main() {
+      vUv = position; 
+      vec4 modelViewPosition = modelViewMatrix * vec4(position, 1.0);
+      gl_Position = projectionMatrix * modelViewPosition; 
+    }
+    </script>
+
+  <script id="fragmentShader" type="x-shader/x-fragment">
+        uniform float time;
+        uniform vec2 resolution;
+
+        varying vec3 vUv;
+        void main()	{
+            float x = mod(time + gl_FragCoord.x, 20.) < 10. ? 1. : 0.;
+            float y = mod(time + gl_FragCoord.y, 20.) < 10. ? 1. : 0.;
+           // gl_FragColor = vec4(vec3(min(x, y)), 1.);
+            // vec2 st = gl_FragCoord.xy/resolution;
+            gl_FragColor = vec4(0., (sin(time*.1) + 1.)*.5, vUv.x, 1.);
+
+        }
+    </script>
+</head>
+<body>
+  <script type="text/javascript" src="circsMike.js"></script>
+  <script type="text/javascript" src="makeScene.js"></script>
+</body>
+</html>
